@@ -56,29 +56,20 @@ return TABLE.SQLIZEMETHOD({
 
 
 // INSTANCE METHOD
-Page.findByTag = function(tag) {
+Table.findByTag = function(tag) {
     // return Page.findAndCountAll({
-    return Page.findAll({
+    return Table.findAll({
         where: {
-            tags: {
-                $overlap: [tag]
-            }
+
         }
     });
 }
 
 // CLASS METHOD
-Page.prototype.findSimilar = function() {
-    return Page.findAll({
-        // Did i just copy this from wikistacks!?
-        // it's nOtEs! not cheating!!
+Table.prototype.findSimilar = function() {
+    return Table.findAll({
         where: {
-            tags: {
-                $overlap: this.tags
-            },
-            id: {
-                $ne: this.id
-            }
+
         }
     })
 }
