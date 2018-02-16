@@ -32,14 +32,24 @@ router.get('/:id', (req, res, next) => {
 
     Promise.all([findSomething, findMatchingSomething])
         .then(values => { // could've used .spread
-            let pages = values[0];
-            let user = values[1];
+            let value0 = values[0];
+            let value1 = values[1];
 
-            user.pages = pages;
-
-            res.render('userpage', {
-                user: user
+            table.column = column;
+            res.render('something', {
+                column: column
             })
         })
         .catch(next);
 })
+
+router.post('/tables1', function(req, res, next) {
+    Table1.create(req.body)
+        .then(function(created) {
+            res.json({
+                message: 'YOU ROCK BRO',
+                table: created
+            });
+        })
+        .catch(next);
+});
