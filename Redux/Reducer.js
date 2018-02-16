@@ -13,8 +13,8 @@ const SOME_ACTION_TYPE = 'SOME_ACTION_TYPE';
 
 // ACTION CREATORS
 
-export function someActionCreator(channels) {
-    const action = { type: SOME_ACTION_TYPE, channels };
+export function someActionCreator(something) {
+    const action = { type: SOME_ACTION_TYPE, something };
     return action;
 }
 
@@ -22,16 +22,16 @@ export function someActionCreator(channels) {
 // THUNK CREATORS
 
 
-export function postChannel(channel, ownProps) {
+export function postSomething(something, ownProps) {
 
     return function thunk(dispatch) {
-        return axios.post('/api/channels', channel)
+        return axios.post('/api/somethings', something)
             .then(res => res.data)
-            .then(newChannel => {
-                const action = getChannel(newChannel);
+            .then(newSomething => {
+                const action = getChannel(newSomething);
                 dispatch(action);
-                socket.emit('new-channel', newChannel);
-                ownProps.history.push(`/channels/${newChannel.name}`)
+                socket.emit('new-channel', newSomething);
+                ownProps.history.push(`/channels/${newSomething.id}`)
             });
     }
 }
@@ -61,7 +61,7 @@ export default function reducer(state = {
             return {
                 ...state, //spread operator
                 // item: action.item
-                item: [...state.item, action.item]
+                item: [...state.item, action.something]
 
             };
 

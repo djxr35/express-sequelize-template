@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+ // or import { BrowserRouter as Router } from 'react-router-dom';
 import store from '../store/index.js';
 // import All The Pages you'll Need
 // import {Provider} from 'react-redux';
@@ -26,7 +27,6 @@ export default class Main extends Component {
       <div>
       {
         // wrap everything in <Provider> if using react-redux
-
         // pages you'll want to keep on all pages
         //then a switch
           <Switch>

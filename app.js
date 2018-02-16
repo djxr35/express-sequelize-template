@@ -17,8 +17,8 @@ const { TABLE1, TABLE2 } = require('./models')
 const app = express();
 
 //virtuals
-const wikiRouter = require('./routes/TABLE1');
-const usersRouter = require('./routes/TABLE2');
+const table1Router = require('./routes/TABLE1');
+const table2Router = require('./routes/TABLE2');
 
 // yea the next few lines i don't really get
 app.engine('html', nunjucks.render);
@@ -68,6 +68,9 @@ var AutoEscapeExtension = require("nunjucks-autoescape")(nunjucks);
 env.addExtension('AutoEscapeExtension', new AutoEscapeExtension(env));
 
 
+// app.get('/*', function (req, res) {
+//     res.sendFile(app.get('indexHTMLPath'));
+// });
 
 // EVERYTHING BELOW IS RANDOM NOTES. DON'T HAVE TO WASTE YOUR TIME LOOKING AT IT.
 

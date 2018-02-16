@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import store from '../store/index';
 import {storeFunction} from '../store/reducerFile';
+// import { NavLink } from 'react-router-dom';  /          <NavLink to={`/somewhere}`} >
+
 
 export default class ComponentName extends Component {
 
@@ -56,6 +58,7 @@ render () {
     return (
       <JSX>
       { 'put in brackets things that you would like to do in JS' }
+      < PropsFunction something = { propsToPassThrough } />
       </JSX>
     );
   }
