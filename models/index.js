@@ -12,11 +12,10 @@ const marked = require('marked');
 
 // model definition guidelines
 // http://docs.sequelizejs.com/manual/tutorial/models-definition.html
-const TABLE1 = db.define('name', {
-        friends: {},
+const TABLE1 = db.define('table1', {
+        column1: {},
         column2: {},
         column3: {},
-        status: {},
     },
     // OPTIONS:
     // comprehensive lists: http://docs.sequelizejs.com/variable/index.html#static-variable-DataTypes
@@ -26,15 +25,18 @@ const TABLE1 = db.define('name', {
     // allowNull: false
     // unique: True
     // defaultValue: anything/false
+    // validate below is a Sequelize check, not a database check like the above
+    // validate: {
+    //     something: {
+    // someArgument : someArgumentValue
+    // }
+    // }
 
     // type: Sequelize.STRING,
     // type: Sequelize.TEXT,
     // type: Sequelize.ENUM('open', 'closed')
     // type: Sequelize.ARRAY(Sequelize.TEXT),
-    // validate below is a Sequelize check, not a database check like the above
-    // validate: {
-    //     something: true
-    // }
+
     {
         hooks: {
             // beforeValidate:
@@ -47,16 +49,17 @@ const TABLE1 = db.define('name', {
         }
     });
 
-HOOKS - MODERN METHOD
+// HOOKS - MODERN METHOD
 TABLE.hook('hook method',
-    function)
-return TABLE.SQLIZEMETHOD({
-    where: {}
-});
+    function() {
+        return TABLE.SQLIZEMETHOD({
+            where: {}
+        })
+    });
 
 
 // INSTANCE METHOD
-Table.findByTag = function(tag) {
+Table.METHOD = function(tag) {
     // return Page.findAndCountAll({
     return Table.findAll({
         where: {
@@ -66,7 +69,7 @@ Table.findByTag = function(tag) {
 }
 
 // CLASS METHOD
-Table.prototype.findSimilar = function() {
+Table.prototype.METHOD = function() {
     return Table.findAll({
         where: {
 
@@ -74,6 +77,37 @@ Table.prototype.findSimilar = function() {
     })
 }
 
+
+// SEQUELIZE CRUD
+Table.delete = function() {
+    return this.destroy({
+        where: {
+            someKey: hasSomeValue
+        }
+    });
+}
+
+Table.modify = function(table) {
+    return this.update({
+        key: hasNewValue //updatedInfo
+    }, {
+        where: { condition: isMet }
+    });
+}
+
+Table.prototype.add = function(table) {
+    let parentId = this.id
+    return Table.create(
+            table // new instance / row; could easily have been
+            // .create({
+            //    someKey : someValue,
+            //    anotherKey: anotherValue
+            // })
+        )
+        .then(function(child) {
+            return child.setParent(parentId)
+        })
+};
 // if you don't know that this is creating our second table, then go back to line 1
 const TABLE2 = db.define('name', {
     column1: {},

@@ -7,6 +7,11 @@ module.exports = router;
 
 router.get('/', (req, res, next) => {
     TABLE2.findAll()
+        // or findAll({
+        //     where: {
+        //         authorId: req.params.userId
+        //     }
+        // })
         .then(column => {
             res.render('column', {
                 column: column
@@ -16,16 +21,16 @@ router.get('/', (req, res, next) => {
 });
 
 
-router.get('/:userId', (req, res, next) => {
-    let findingUserPages = Page.findAll({
+router.get('/:id', (req, res, next) => {
+    let findSomething = Table.findAll({
         where: {
-            authorId: req.params.userId
+            key: req.params.id
         }
     });
 
-    let findingUser = User.findById(req.params.userId);
+    let findMatchingSomething = Table.findById(req.params.id);
 
-    Promise.all([findingUserPages, findingUser])
+    Promise.all([findSomething, findMatchingSomething])
         .then(values => { // could've used .spread
             let pages = values[0];
             let user = values[1];

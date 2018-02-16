@@ -1,11 +1,11 @@
 // Start by npm init -y to create a json
 
-
 // standard modules
-
 const express = require('express');
 const nunjucks = require('nunjucks');
 const bodyParser = require('body-parser');
+// WITH ALL THESE "REQUIRE'S" ISN'T IT OBVIOUS THAT WE NEED IMPORTS AND IMMIGRANTS!
+// IMMIGRATION REFORM IS 'REQUIRE'
 
 // not always used, but good middleware
 const morgan = require('morgan');
@@ -24,7 +24,7 @@ const usersRouter = require('./routes/TABLE2');
 app.engine('html', nunjucks.render);
 nunjucks.configure('views', { noCache: true });
 app.set('view engine', 'html');
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/FOLDER(EX.=/VIEWS');
 
 app.use(morgan('dev'));
 
@@ -33,8 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 // THESE ALLOW MY SITE TO ACCESS FOLDERS ON MY LOCAL DRIVE
-app.use(express.static(__dirname + '/node_modules'));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/folder'));
 
 //VIRTUALS
 app.use('/TABLE1', TABLE1Router);
